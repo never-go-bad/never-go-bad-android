@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/settings_section_dietary_considerations">
+
+        <CheckBoxPreference />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_section_notifications">
+
+        <com.codepath.nevergobad.NumberPickerPreference
+            android:title="teste"
+            android:key="notif_antecedence"
+            android:defaultValue="2"
+            android:summary="Hello hjh kdh fkd "/>
+
+    </PreferenceCategory>
+</PreferenceScreen>

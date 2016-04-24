@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#9F041B</color>
+    <color name="colorPrimaryDark">#5F0210</color>
+    <color name="colorAccent">#9F041B</color>
+
+    <!-- Override bottom bar library -->
+    <color name="bb_darkBackgroundColor">#333</color>
+</resources>
