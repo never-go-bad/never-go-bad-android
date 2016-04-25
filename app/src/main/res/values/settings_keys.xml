@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_dietary_considerations_healthy_key" translatable="false">settings_dietary_considerations_healthy</string>
+    <string name="settings_dietary_considerations_vegan_key" translatable="false">settings_dietary_considerations_vegan</string>
+    <string name="settings_dietary_considerations_low_cholesterol_key" translatable="false">settings_dietary_considerations_low_cholesterol</string>
+    <string name="settings_dietary_considerations_raw_key" translatable="false">settings_dietary_considerations_raw</string>
+    <string name="settings_dietary_considerations_kosher_key" translatable="false">settings_dietary_considerations_kosher</string>
+    <string name="settings_dietary_considerations_kosher_pesach_key" translatable="false">settings_dietary_considerations_kosher_pesach</string>
+    <string name="settings_notif_early_key" translatable="false">settings_notif_early</string>
+</resources>

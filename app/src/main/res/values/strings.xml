@@ -4,15 +4,19 @@
     <string name="nav_recipes">Recipes</string>
     <string name="nav_items">Items</string>
     <string name="settings_section_dietary_considerations">Dietary Considerations</string>
+    <string name="settings_section_dietary_considerations_summary">Select the restrictions that apply to you, so we can present recipes that are tailored to your needs.</string>
     <string name="settings_section_notifications">Notifications</string>
-    <string-array name="dietary_considerations">
-        <item>Healthy</item>
-        <item>Vegan</item>
-        <item>Low Cholesterol</item>
-        <item>Kosher</item>
-        <item>Raw</item>
-        <item>Kosher Pesach</item>
-    </string-array>
+    <string name="settings_section_notification_early">Early Notification</string>
+    <string name="settings_section_notification_early_summary">How many days in advance you want to be notified that an item is about to expire.</string>
+
+    <string name="dietary_considerations_healthy">Healthy</string>
+    <string name="dietary_considerations_vegan">Vegan</string>
+    <string name="dietary_considerations_low_cholesterol">Low Cholesterol</string>
+    <string name="dietary_considerations_raw">Raw</string>
+    <string name="dietary_considerations_kosher">Kosher</string>
+    <string name="dietary_considerations_kosher_pesach">Kosher Pesach</string>
+
+
 
 
 </resources>
