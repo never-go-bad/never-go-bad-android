@@ -1,4 +1,4 @@
-package com.codepath.nevergobad;
+package com.codepath.nevergobad.settings;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,6 +13,8 @@ import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.codepath.nevergobad.R;
 
 
 /**

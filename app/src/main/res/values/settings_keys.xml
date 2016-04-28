@@ -7,4 +7,5 @@
     <string name="settings_dietary_considerations_kosher_key" translatable="false">settings_dietary_considerations_kosher</string>
     <string name="settings_dietary_considerations_kosher_pesach_key" translatable="false">settings_dietary_considerations_kosher_pesach</string>
     <string name="settings_notif_early_key" translatable="false">settings_notif_early</string>
+    <string name="settings_notif_time_key" translatable="false">settings_notif_time</string>
 </resources>

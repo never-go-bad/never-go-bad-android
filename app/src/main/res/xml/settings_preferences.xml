@@ -35,9 +35,9 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/settings_section_notifications">
+        android:title="@string/settings_section_notifications">DialogPreference
 
-        <com.codepath.nevergobad.NumberPickerPreference
+        <com.codepath.nevergobad.settings.NumberPickerPreference
             android:defaultValue="1"
             android:key="@string/settings_notif_early_key"
             android:persistent="true"
@@ -46,6 +46,9 @@
             app:maxValue="7"
             app:minValue="1"/>
 
+        <com.codepath.nevergobad.settings.TimePreference
+            android:key="@string/settings_notif_time_key"
+            android:title="@string/settings_section_notification_time"/>
 
     </PreferenceCategory>
 </PreferenceScreen>
