@@ -11,6 +11,7 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -60,7 +61,7 @@ public class NumberPickerPreference extends Preference {
     }
 
     private void init(Context context, @Nullable AttributeSet attrs) {
-        setWidgetLayoutResource(R.layout.numberpicker_preference);
+        setWidgetLayoutResource(R.layout.numberpicker_preference_widget);
         setSelectable(false);
 
         if (attrs != null) {
@@ -80,29 +81,53 @@ public class NumberPickerPreference extends Preference {
         mDecrementImageButton = (ImageButton) holder.findViewById(R.id.bt_decrement);
         Drawable decrementIcon = mDecrementImageButton.getDrawable();
         if (decrementIcon != null) {
-            DrawableCompat.setTintList(decrementIcon, getContext().getResources().getColorStateList(R.color.number_picker_button));
+            DrawableCompat.setTintList(decrementIcon, getContext().getResources().getColorStateList(R.color.widget_color_selector));
         }
 
-        mDecrementImageButton.setOnClickListener(view -> {
-            setValue(mCurrValue - 1);
-            updateViews();
+        mDecrementImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NumberPickerPreference.this.setValue(mCurrValue - 1);
+                NumberPickerPreference.this.updateViews();
+            }
         });
+
+        mDecrementImageButton.setEnabled(false);
 
         mIncrementImageButton = (ImageButton) holder.findViewById(R.id.bt_increment);
         Drawable incrementIcon = mIncrementImageButton.getDrawable();
         if (decrementIcon != null) {
-            DrawableCompat.setTintList(incrementIcon, getContext().getResources().getColorStateList(R.color.number_picker_button));
+            DrawableCompat.setTintList(incrementIcon, getContext().getResources().getColorStateList(R.color.widget_color_selector));
         }
 
-        mIncrementImageButton.setOnClickListener(view -> {
-            setValue(mCurrValue + 1);
-            updateViews();
+        mIncrementImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NumberPickerPreference.this.setValue(mCurrValue + 1);
+                NumberPickerPreference.this.updateViews();
+            }
         });
 
         mValueView = (TextView) holder.findViewById(R.id.number_value);
 
         updateViews();
 
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        mIncrementImageButton.setEnabled(enabled);
+        mDecrementImageButton.setEnabled(enabled);
+    }
+
+    @Override
+    public void onDependencyChanged(Preference dependency, boolean disableDependent) {
+        super.onDependencyChanged(dependency, disableDependent);
+        if (mIncrementImageButton != null && mDecrementImageButton != null) {
+            mIncrementImageButton.setEnabled(isEnabled());
+            mDecrementImageButton.setEnabled(isEnabled());
+        }
     }
 
     @Override
@@ -113,6 +138,26 @@ public class NumberPickerPreference extends Preference {
     @Override
     protected Object onGetDefaultValue(TypedArray a, int index) {
         return a.getInteger(index, DEFAULT_VALUE);
+    }
+
+    public int getValue() {
+        return mCurrValue;
+    }
+
+    public void setValue(@IntRange(from = MIN_MIN_VALUE, to = MAX_MAX_VALUE) int value) {
+        if (MIN_MIN_VALUE <= value && value <= MAX_MAX_VALUE) {
+            if (mCurrValue != value) {
+                mCurrValue = value;
+                persistInt(mCurrValue);
+                notifyChanged();
+            }
+        } else {
+            throw new IllegalArgumentException("value is out of range");
+        }
+    }
+
+    public int getMinValue() {
+        return mMinValue;
     }
 
     public void setMinValue(@IntRange(from = MIN_MIN_VALUE, to = MAX_MAX_VALUE) int value) {
@@ -128,6 +173,10 @@ public class NumberPickerPreference extends Preference {
         }
     }
 
+    public int getMaxValue() {
+        return mMaxValue;
+    }
+
     public void setMaxValue(@IntRange(from = MIN_MIN_VALUE, to = MAX_MAX_VALUE) int value) {
         if (MIN_MIN_VALUE <= value && value <= MAX_MAX_VALUE) {
             mMaxValue = value;
@@ -141,30 +190,9 @@ public class NumberPickerPreference extends Preference {
         }
     }
 
-    public void setValue(@IntRange(from = MIN_MIN_VALUE, to = MAX_MAX_VALUE) int value) {
-        if (MIN_MIN_VALUE <= value && value <= MAX_MAX_VALUE) {
-            mCurrValue = value;
-            persistInt(mCurrValue);
-        } else {
-            throw new IllegalArgumentException("value is out of range");
-        }
-    }
-
-    public int getValue() {
-        return mCurrValue;
-    }
-
-    public int getMinValue() {
-        return mMinValue;
-    }
-
-    public int getMaxValue() {
-        return mMaxValue;
-    }
-
     private void updateViews() {
-        mDecrementImageButton.setEnabled(mCurrValue > mMinValue);
-        mIncrementImageButton.setEnabled(mCurrValue < mMaxValue);
+        mDecrementImageButton.setEnabled(isEnabled() && mCurrValue > mMinValue);
+        mIncrementImageButton.setEnabled(isEnabled() && mCurrValue < mMaxValue);
         mValueView.setText(String.valueOf(mCurrValue));
     }
 
@@ -206,6 +234,18 @@ public class NumberPickerPreference extends Preference {
     }
 
     private static class SavedState extends BaseSavedState {
+        // Standard creator object using an instance of this class
+        public static final Parcelable.Creator<SavedState> CREATOR =
+                new Parcelable.Creator<SavedState>() {
+
+                    public SavedState createFromParcel(Parcel in) {
+                        return new SavedState(in);
+                    }
+
+                    public SavedState[] newArray(int size) {
+                        return new SavedState[size];
+                    }
+                };
         // Member that holds the setting's value
         // Change this data type to match the type saved by your Preference
         int value;
@@ -226,21 +266,6 @@ public class NumberPickerPreference extends Preference {
             // Write the preference's value
             dest.writeInt(value);  // Change this to write the appropriate data type
         }
-
-        // Standard creator object using an instance of this class
-        public static final Parcelable.Creator<SavedState> CREATOR =
-                new Parcelable.Creator<SavedState>() {
-
-                    public SavedState createFromParcel(Parcel in) {
-                        return new SavedState(in);
-                    }
-
-                    public SavedState[] newArray(int size) {
-                        return new SavedState[size];
-                    }
-                };
     }
-
-
 
 }

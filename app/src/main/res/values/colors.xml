@@ -5,5 +5,5 @@
     <color name="colorAccent">#9F041B</color>
 
     <!-- Override bottom bar library -->
-    <color name="bb_darkBackgroundColor">#333</color>
+    <color name="bb_darkBackgroundColor">#555</color>
 </resources>

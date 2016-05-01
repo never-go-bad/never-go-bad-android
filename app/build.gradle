@@ -10,9 +10,9 @@ android {
         targetSdkVersion 'N'
         versionCode 1
         versionName "1.0"
-        jackOptions {
-            enabled true
-        }
+//        jackOptions {
+//            enabled true
+//        }
     }
 
     buildTypes {
@@ -22,10 +22,10 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
 }
 
 dependencies {

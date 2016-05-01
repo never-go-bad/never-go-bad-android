@@ -12,13 +12,14 @@ import com.codepath.nevergobad.R;
 public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
+        //TODO: Breaking into preference files so we can have a Notification settings Activity
         addPreferencesFromResource(R.xml.settings_preferences);
     }
 
     @Override
     public void onDisplayPreferenceDialog(Preference preference) {
         if (preference instanceof TimePreference) {
-            TimePickerPreferenceDialogFragment dialogFragment =  TimePickerPreferenceDialogFragment
+            TimePickerPreferenceDialogFragment dialogFragment = TimePickerPreferenceDialogFragment
                     .newInstance(preference.getKey());
             dialogFragment.setTargetFragment(this, 0);
             dialogFragment.show(getFragmentManager(), "android.support.v7.preference.PreferenceFragment.DIALOG");

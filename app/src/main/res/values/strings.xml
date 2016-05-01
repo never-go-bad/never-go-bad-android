@@ -6,7 +6,7 @@
     <string name="settings_section_dietary_considerations">Dietary Considerations</string>
     <string name="settings_section_dietary_considerations_summary">Select the restrictions that apply to you, so we can present recipes that are tailored to your needs.</string>
     <string name="settings_section_notifications">Notifications</string>
-    <string name="settings_section_notification_early">Notification Antecedence</string>
+    <string name="settings_section_notification_early">Antecedence</string>
     <string name="settings_section_notification_early_summary">How many days in advance you want to be notified that an item is about to expire.</string>
 
     <string name="dietary_considerations_healthy">Healthy</string>
@@ -16,9 +16,12 @@
     <string name="dietary_considerations_kosher">Kosher</string>
     <string name="dietary_considerations_kosher_pesach">Kosher Pesach</string>
 
-    <string name="settings_section_notification_time">Notification time</string>
+    <string name="settings_section_notification_time">Time</string>
+    <string name="settings_section_notification_time_dialog_title">Notification Time</string>
+    <string name="settings_section_notification_time_summary">Select the best time to be notified of items about to expire.</string>
+    <string name="settings_section_notification_notification_enabled">Enable Notifications</string>
 
-
+    <string name="set">set</string>
 
 
 </resources>
