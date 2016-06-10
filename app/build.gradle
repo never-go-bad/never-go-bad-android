@@ -1,9 +1,15 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
+project.ext {
+    supportLibraryVersion = '23.4.0'
+    daggerVersion = '2.0.1'
+    retrofit2Version = '2.0.2'
+}
+
 android {
     compileSdkVersion 'android-N'
-    buildToolsVersion "24.0.0 rc3"
+    buildToolsVersion "24 rc4"
 
     defaultConfig {
         applicationId "com.codepath.nevergobad"
@@ -30,20 +36,31 @@ android {
 }
 
 dependencies {
+    //TODO: Will need a good proguard setting to reduce the APK size
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.android.support:preference-v7:23.3.0'
-    compile 'com.android.support:design:23.3.0'
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.squareup.retrofit2:converter-jackson:2.0.2'
-    compile 'com.google.dagger:dagger:2.0.1'
-    apt "com.google.dagger:dagger-compiler:2.0.1"
-    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    compile "com.android.support:appcompat-v7:${project.supportLibraryVersion}"
+    compile "com.android.support:preference-v7:${project.supportLibraryVersion}"
+    compile "com.android.support:design:${project.supportLibraryVersion}"
 
     //Infamous bottom navigation
     compile 'com.roughike:bottom-bar:1.3.3'
     //More Fab
     //compile 'com.getbase:floatingactionbutton:1.10.1'
     //compile 'com.github.clans:fab:1.6.3'
+
+    compile "com.google.dagger:dagger:${project.daggerVersion}"
+    apt "com.google.dagger:dagger-compiler:${project.daggerVersion}"
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    compile 'io.reactivex:rxandroid:1.2.0'
+    compile 'io.reactivex:rxjava:1.1.5'
+    compile "com.squareup.retrofit2:adapter-rxjava:${project.retrofit2Version}"
+
+    compile "com.squareup.retrofit2:retrofit:${project.retrofit2Version}"
+    compile "com.squareup.retrofit2:converter-jackson:${project.retrofit2Version}"
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

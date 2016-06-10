@@ -1,51 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:app="http://schemas.android.com/apk/res-auto">
-    <PreferenceCategory
-        android:title="@string/settings_section_dietary_considerations">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory android:title="@string/settings_section_dietary_considerations">
 
         <Preference
             android:enabled="true"
             android:persistent="false"
             android:selectable="false"
             android:shouldDisableView="false"
-            android:summary="@string/settings_section_dietary_considerations_summary"/>
+            android:summary="@string/settings_section_dietary_considerations_summary" />
 
         <CheckBoxPreference
             android:key="@string/settings_dietary_considerations_healthy_key"
             android:persistent="true"
-            android:title="@string/dietary_considerations_healthy"/>
+            android:title="@string/dietary_considerations_healthy" />
         <CheckBoxPreference
             android:key="@string/settings_dietary_considerations_vegan_key"
             android:persistent="true"
-            android:title="@string/dietary_considerations_vegan"/>
+            android:title="@string/dietary_considerations_vegan" />
         <CheckBoxPreference
             android:key="@string/settings_dietary_considerations_low_cholesterol_key"
             android:persistent="true"
-            android:title="@string/dietary_considerations_low_cholesterol"/>
+            android:title="@string/dietary_considerations_low_cholesterol" />
         <CheckBoxPreference
             android:key="@string/settings_dietary_considerations_raw_key"
             android:persistent="true"
-            android:title="@string/dietary_considerations_raw"/>
+            android:title="@string/dietary_considerations_raw" />
         <CheckBoxPreference
             android:key="@string/settings_dietary_considerations_kosher_key"
             android:persistent="true"
-            android:title="@string/dietary_considerations_kosher"/>
+            android:title="@string/dietary_considerations_kosher" />
         <CheckBoxPreference
             android:key="@string/settings_dietary_considerations_kosher_pesach_key"
             android:persistent="true"
-            android:title="@string/dietary_considerations_kosher_pesach"/>
+            android:title="@string/dietary_considerations_kosher_pesach" />
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@string/settings_section_notifications">
+    <PreferenceCategory android:title="@string/settings_section_notifications">
 
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:disableDependentsState="false"
             android:key="@string/settings_notif_key"
             android:persistent="true"
-            android:title="@string/settings_section_notification_notification_enabled"/>
+            android:title="@string/settings_section_notification_notification_enabled" />
 
         <com.codepath.nevergobad.settings.NumberPickerPreference
             android:defaultValue="1"
@@ -55,7 +53,7 @@
             android:summary="@string/settings_section_notification_early_summary"
             android:title="@string/settings_section_notification_early"
             app:maxValue="7"
-            app:minValue="1"/>
+            app:minValue="1" />
 
         <com.codepath.nevergobad.settings.TimePreference
             android:defaultValue="21:58"
@@ -63,7 +61,7 @@
             android:key="@string/settings_notif_time_key"
             android:persistent="true"
             android:summary="@string/settings_section_notification_time_summary"
-            android:title="@string/settings_section_notification_time"/>
+            android:title="@string/settings_section_notification_time" />
 
     </PreferenceCategory>
 </PreferenceScreen>
