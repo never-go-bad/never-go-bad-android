@@ -9,6 +9,7 @@ import dagger.Component;
  */
 
 @Singleton
-@Component(modules = {NetworkModule.class})
+@Component(modules = {NetworkModule.class, StaticConfigModule.class})
 public interface NetworkComponent {
+    void inject(RecipeService recipeService);
 }

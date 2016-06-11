@@ -20,6 +20,8 @@ android {
 //        jackOptions {
 //            enabled true
 //        }
+
+        buildConfigField "String", "RECIPE_BASE_URL", "\"https://gentle-forest-65806.herokuapp.com\""
     }
 
     buildTypes {

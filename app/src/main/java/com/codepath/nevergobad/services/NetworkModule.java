@@ -7,6 +7,7 @@ import com.codepath.nevergobad.BuildConfig;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -27,7 +28,16 @@ import rx.schedulers.Schedulers;
 @Module
 public class NetworkModule {
 
+    private Application mApplication;
+
     @Provides
+    @Singleton
+    Application providesApplication() {
+        return mApplication;
+    }
+
+    @Provides
+    @Singleton
     Cache provideOkHttpCache(Application application) {
         final int CACHE_SIZE = 10 * 1_024 * 1_024;
         return new Cache(application.getCacheDir(), CACHE_SIZE);
@@ -35,12 +45,18 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient(Cache cache, HttpLoggingInterceptor loggingInterceptor) {
-        OkHttpClient client = new OkHttpClient.Builder()
+    OkHttpClient provideOkHttpClient(Cache cache, HttpLoggingInterceptor loggingInterceptor,
+                                     UserAgentInterceptor userAgentInterceptor) {
+        return new OkHttpClient.Builder()
                 .cache(cache)
                 .addInterceptor(loggingInterceptor)
+                .addNetworkInterceptor(userAgentInterceptor)
                 .build();
-        return client;
+    }
+
+    @Provides
+    UserAgentInterceptor providesUserAgentInterceptor(@Named(StaticConfigModule.USER_AGENT) String userAgent) {
+        return new UserAgentInterceptor(userAgent);
     }
 
     @Provides
@@ -58,8 +74,8 @@ public class NetworkModule {
 
     @Provides
     @Nullable
-    HttpLoggingInterceptor providesHttpLogging() {
-        HttpLoggingInterceptor.Level logLevel = BuildConfig.DEBUG ?
+    HttpLoggingInterceptor providesHttpLogging(@Named(StaticConfigModule.DEBUG) boolean debugConfig) {
+        HttpLoggingInterceptor.Level logLevel = debugConfig ?
                 HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE;
 
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
@@ -71,17 +87,20 @@ public class NetworkModule {
     Retrofit.Builder provideRetrofit(OkHttpClient client, ObjectMapper mapper,
                                      CallAdapter.Factory callAdapter) {
         JacksonConverterFactory jacksonConverterFactory = JacksonConverterFactory.create(mapper);
-        Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
+        return new Retrofit.Builder()
                 .client(client)
                 .addCallAdapterFactory(callAdapter)
                 .addConverterFactory(jacksonConverterFactory);
-        return retrofitBuilder;
     }
 
     @Provides
     @Singleton
-    RecipeEndpoints provideRecipeEndpoints(Retrofit.Builder retrofitBuilder, String baseUrl) {
-        return retrofitBuilder.baseUrl(baseUrl).build().create(RecipeEndpoints.class);
+    RecipeEndpoints provideRecipeEndpoints(Retrofit.Builder retrofitBuilder,
+                                           @Named(StaticConfigModule.RECIPE_BASE_URL) String recipeBaseUrl) {
+        return retrofitBuilder
+                .baseUrl(recipeBaseUrl)
+                .build()
+                .create(RecipeEndpoints.class);
     }
 
 }
