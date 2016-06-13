@@ -1,6 +1,8 @@
 package com.codepath.nevergobad.services;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 
 import com.codepath.nevergobad.models.DietaryRestriction;
 import com.codepath.nevergobad.models.Recipe;
@@ -34,7 +36,15 @@ public class RecipeService {
                                                         int pageSize,
                                                         List<DietaryRestriction> dietaryRestrictionList) {
 
-        final int offset = (page - 1) * pageSize + 1;
+        final int offset = calculatePageOffset(page, pageSize);
+        List<String> dietaryRestrictions = convertDietaryRestrictionsToQuery(dietaryRestrictionList);
+
+        return mRecipeEndpoints.searchRecipes(searchTerms, page, pageSize, offset, dietaryRestrictions);
+    }
+
+    @VisibleForTesting
+    @Nullable
+    List<String> convertDietaryRestrictionsToQuery(List<DietaryRestriction> dietaryRestrictionList) {
         List<String> dietaryRestrictions = null;
         if (dietaryRestrictionList != null && !dietaryRestrictionList.isEmpty()) {
             dietaryRestrictions = new ArrayList<>(dietaryRestrictionList.size());
@@ -42,7 +52,11 @@ public class RecipeService {
                 dietaryRestrictions.add(dietaryRestriction.value());
             }
         }
+        return dietaryRestrictions;
+    }
 
-        return mRecipeEndpoints.searchRecipes(searchTerms, page, pageSize, offset, dietaryRestrictions);
+    @VisibleForTesting
+    int calculatePageOffset(int page, int pageSize) {
+        return (page - 1) * pageSize + 1;
     }
 }

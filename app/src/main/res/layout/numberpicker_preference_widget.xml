@@ -13,7 +13,7 @@
         android:layout_height="48dp"
         android:layout_centerVertical="true"
         android:scaleType="center"
-        android:src="@drawable/ic_decrement"
+        app:srcCompat="@drawable/ic_decrement"
         app:backgroundTint="?attr/colorAccent" />
 
     <TextView
@@ -35,5 +35,5 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/number_value"
         android:scaleType="center"
-        android:src="@drawable/ic_increment" />
+        app:srcCompat="@drawable/ic_increment" />
 </RelativeLayout>

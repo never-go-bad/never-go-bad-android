@@ -11,12 +11,8 @@ public class RecipeSearchResult {
 
     public static class RecipeSummary {
         public String name;
-        public
-        @Nullable
-        String image;
+        public @Nullable String image;
         public String id;
-        public
-        @Nullable
-        Double rating;
+        public @Nullable Double rating;
     }
 }
