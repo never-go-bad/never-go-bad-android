@@ -73,7 +73,6 @@ public class NetworkModule {
     }
 
     @Provides
-    @Nullable
     HttpLoggingInterceptor providesHttpLogging(@Named(StaticConfigModule.DEBUG) boolean debugConfig) {
         HttpLoggingInterceptor.Level logLevel = debugConfig ?
                 HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE;

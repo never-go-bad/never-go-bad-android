@@ -34,13 +34,14 @@
                 tools:text="Pizza de Frango com Catupiry de cabra maltês"/>
 
             <RatingBar
-                style="?android:attr/ratingBarStyleSmall"
+                style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 tools:numStars="4"
-                android:progressDrawable="@drawable/ratingbar_small"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:progressDrawable="@drawable/abc_ratingbar_small_material"
+                android:indeterminateDrawable="@drawable/abc_ratingbar_small_material"
                 android:isIndicator="true"
                 tools:rating="2"
                 android:id="@+id/ratingBar"/>
