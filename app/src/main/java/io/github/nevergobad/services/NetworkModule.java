@@ -1,9 +1,7 @@
-package com.codepath.nevergobad.services;
+package io.github.nevergobad.services;
 
 import android.app.Application;
-import android.support.annotation.Nullable;
 
-import com.codepath.nevergobad.BuildConfig;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

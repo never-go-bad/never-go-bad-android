@@ -45,7 +45,7 @@
             android:persistent="true"
             android:title="@string/settings_section_notification_notification_enabled" />
 
-        <com.codepath.nevergobad.settings.NumberPickerPreference
+        <io.github.nevergobad.settings.NumberPickerPreference
             android:defaultValue="1"
             android:dependency="@string/settings_notif_key"
             android:key="@string/settings_notif_antecedence_key"
@@ -55,7 +55,7 @@
             app:maxValue="7"
             app:minValue="1" />
 
-        <com.codepath.nevergobad.settings.TimePreference
+        <io.github.nevergobad.settings.TimePreference
             android:defaultValue="21:58"
             android:dependency="@string/settings_notif_key"
             android:key="@string/settings_notif_time_key"

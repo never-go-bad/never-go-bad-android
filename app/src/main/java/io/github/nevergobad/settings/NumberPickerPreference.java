@@ -1,4 +1,4 @@
-package com.codepath.nevergobad.settings;
+package io.github.nevergobad.settings;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.codepath.nevergobad.R;
+import io.github.nevergobad.R;
 
 
 /**

@@ -1,12 +1,12 @@
-package com.codepath.nevergobad.services;
+package io.github.nevergobad.services;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 
-import com.codepath.nevergobad.models.DietaryRestriction;
-import com.codepath.nevergobad.models.Recipe;
-import com.codepath.nevergobad.models.RecipeSearchResult;
+import io.github.nevergobad.models.DietaryRestriction;
+import io.github.nevergobad.models.Recipe;
+import io.github.nevergobad.models.RecipeSearchResult;
 
 import java.util.ArrayList;
 import java.util.List;

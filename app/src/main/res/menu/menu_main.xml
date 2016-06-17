@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.codepath.nevergobad.MainActivity">
+    tools:context="com.github.nevergobad.io.github.nevergobad.MainActivity">
 
     <item
         android:id="@+id/nav_items"

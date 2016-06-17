@@ -1,6 +1,6 @@
-package com.codepath.nevergobad.services;
+package io.github.nevergobad.services;
 
-import com.codepath.nevergobad.BuildConfig;
+import io.github.nevergobad.BuildConfig;
 
 import javax.inject.Named;
 

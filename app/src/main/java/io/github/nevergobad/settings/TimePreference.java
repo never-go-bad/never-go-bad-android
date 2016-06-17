@@ -1,4 +1,4 @@
-package com.codepath.nevergobad.settings;
+package io.github.nevergobad.settings;
 
 
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import com.codepath.nevergobad.R;
+import io.github.nevergobad.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

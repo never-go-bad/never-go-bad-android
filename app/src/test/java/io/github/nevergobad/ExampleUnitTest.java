@@ -1,4 +1,4 @@
-package com.codepath.nevergobad;
+package io.github.nevergobad;
 
 import org.junit.Test;
 

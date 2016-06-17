@@ -1,4 +1,4 @@
-package com.codepath.nevergobad.settings;
+package io.github.nevergobad.settings;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.TimePicker;
 
-import com.codepath.nevergobad.R;
+import io.github.nevergobad.R;
 
 /**
  * Created by aoriani on 4/27/16.

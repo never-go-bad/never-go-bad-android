@@ -1,6 +1,5 @@
-package com.codepath.nevergobad.services;
+package io.github.nevergobad.services;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;

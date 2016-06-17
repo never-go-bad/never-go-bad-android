@@ -1,9 +1,9 @@
-package com.codepath.nevergobad.services;
+package io.github.nevergobad.services;
 
 import android.support.annotation.NonNull;
 
-import com.codepath.nevergobad.models.Recipe;
-import com.codepath.nevergobad.models.RecipeSearchResult;
+import io.github.nevergobad.models.Recipe;
+import io.github.nevergobad.models.RecipeSearchResult;
 
 import java.util.List;
 

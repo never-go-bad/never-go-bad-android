@@ -1,4 +1,4 @@
-package com.codepath.nevergobad;
+package io.github.nevergobad;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import io.github.nevergobad.R;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
@@ -41,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         BottomBar bottomBar = BottomBar.attach(this, savedInstanceState);
         bottomBar.useDarkTheme();
         bottomBar.setMaxFixedTabs(0);
-        bottomBar.setItemsFromMenu(R.menu.menu_main, new OnMenuTabClickListener() {
+        bottomBar.setItems(R.menu.menu_main);
+        bottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
 
             @Override
             public void onMenuTabSelected(@IdRes int menuItemId) {

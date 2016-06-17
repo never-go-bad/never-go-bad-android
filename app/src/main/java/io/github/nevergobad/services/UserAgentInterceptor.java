@@ -1,4 +1,4 @@
-package com.codepath.nevergobad.services;
+package io.github.nevergobad.services;
 
 import java.io.IOException;
 

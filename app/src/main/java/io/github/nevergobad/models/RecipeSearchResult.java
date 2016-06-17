@@ -1,4 +1,4 @@
-package com.codepath.nevergobad.models;
+package io.github.nevergobad.models;
 
 import android.support.annotation.Nullable;
 

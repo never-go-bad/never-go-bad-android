@@ -1,4 +1,4 @@
-package com.codepath.nevergobad;
+package io.github.nevergobad;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
