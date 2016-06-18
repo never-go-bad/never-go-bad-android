@@ -1,4 +1,4 @@
-package io.github.nevergobad.services;
+package io.github.nevergobad.dependencyinjection;
 
 import io.github.nevergobad.BuildConfig;
 
@@ -12,11 +12,11 @@ import dagger.Provides;
  */
 
 @Module
-public class StaticConfigModule {
+ class StaticConfigModule {
 
-    public static final String DEBUG = "DebugConfig";
-    public static final String USER_AGENT = "UserAgent";
-    public static final String RECIPE_BASE_URL = "RecipeBaseUrl";
+    static final String DEBUG = "DebugConfig";
+    static final String USER_AGENT = "UserAgent";
+    static final String RECIPE_BASE_URL = "RecipeBaseUrl";
 
     @Provides
     @Named(DEBUG)

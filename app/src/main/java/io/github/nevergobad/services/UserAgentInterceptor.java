@@ -12,6 +12,7 @@ import okhttp3.Response;
 
 public class UserAgentInterceptor implements Interceptor {
 
+    public static final String USER_AGENT_HEADER = "User-Agent";
     private final String mUserAgent;
 
     public UserAgentInterceptor(String userAgent) {
@@ -21,7 +22,7 @@ public class UserAgentInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request.Builder requestBuilder = chain.request().newBuilder();
-        requestBuilder.addHeader("User-Agent", mUserAgent);
+        requestBuilder.addHeader(USER_AGENT_HEADER, mUserAgent);
         return chain.proceed(requestBuilder.build());
     }
 }

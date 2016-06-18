@@ -1,4 +1,4 @@
-package io.github.nevergobad.services;
+package io.github.nevergobad.dependencyinjection;
 
 import android.app.Application;
 
@@ -10,6 +10,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import io.github.nevergobad.services.RecipeEndpoints;
+import io.github.nevergobad.services.UserAgentInterceptor;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -24,15 +26,7 @@ import rx.schedulers.Schedulers;
  */
 
 @Module
-public class NetworkModule {
-
-    private Application mApplication;
-
-    @Provides
-    @Singleton
-    Application providesApplication() {
-        return mApplication;
-    }
+class NetworkModule {
 
     @Provides
     @Singleton

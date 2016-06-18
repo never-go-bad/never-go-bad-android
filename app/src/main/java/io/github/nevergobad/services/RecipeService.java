@@ -1,5 +1,6 @@
 package io.github.nevergobad.services;
 
+import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
@@ -44,7 +45,7 @@ public class RecipeService {
 
     @VisibleForTesting
     @Nullable
-    List<String> convertDietaryRestrictionsToQuery(List<DietaryRestriction> dietaryRestrictionList) {
+    List<String> convertDietaryRestrictionsToQuery(@Nullable List<DietaryRestriction> dietaryRestrictionList) {
         List<String> dietaryRestrictions = null;
         if (dietaryRestrictionList != null && !dietaryRestrictionList.isEmpty()) {
             dietaryRestrictions = new ArrayList<>(dietaryRestrictionList.size());
@@ -56,7 +57,16 @@ public class RecipeService {
     }
 
     @VisibleForTesting
-    int calculatePageOffset(int page, int pageSize) {
+    int calculatePageOffset(@IntRange(from = 1) int page, @IntRange(from = 1) int pageSize) {
+
+        if (page < 1) {
+            throw new IllegalArgumentException("page shall be >= 1");
+        }
+
+        if (pageSize < 1) {
+            throw new IllegalArgumentException("pageSize shall be >= 1");
+        }
+
         return (page - 1) * pageSize + 1;
     }
 }
