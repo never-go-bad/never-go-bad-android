@@ -11,9 +11,6 @@ import io.github.nevergobad.dependencyinjection.NetworkComponent;
 
 public class NeverGoBadApplication extends Application {
 
-    private NetworkComponent mNetworkComponent;
-
-
     @Override
     public void onCreate() {
         super.onCreate();

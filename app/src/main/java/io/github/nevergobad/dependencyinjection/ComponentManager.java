@@ -33,7 +33,12 @@ public class ComponentManager {
         mNetworkComponent = null;
     }
 
-    public @NonNull NetworkComponent get() {
+    public static @NonNull ComponentManager get() {
+        return sInstance;
+    }
+
+    public @NonNull NetworkComponent getNetworkComponent() {
         return mNetworkComponent;
     }
+
 }

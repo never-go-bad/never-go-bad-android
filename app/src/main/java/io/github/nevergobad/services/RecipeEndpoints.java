@@ -3,7 +3,7 @@ package io.github.nevergobad.services;
 import android.support.annotation.NonNull;
 
 import io.github.nevergobad.models.Recipe;
-import io.github.nevergobad.models.RecipeSearchResult;
+import io.github.nevergobad.models.RecipeSearchResultsWire;
 
 import java.util.List;
 
@@ -18,11 +18,11 @@ import rx.Observable;
 public interface RecipeEndpoints {
 
     @GET("recipes?sort=1")//sort=1 sort by rating
-    Observable<RecipeSearchResult> searchRecipes(@NonNull @Query("search") String searchTerms,
-                                                 @Query("pageNumber") Integer pageNumber,
-                                                 @Query("pageSize") Integer pageSize,
-                                                 @Query("resultOffset") Integer pageOffset,
-                                                 @Query("att")List<String> dietaryRestrictions);
+    Observable<RecipeSearchResultsWire> searchRecipes(@NonNull @Query("search") String searchTerms,
+                                                      @Query("pageNumber") Integer pageNumber,
+                                                      @Query("pageSize") Integer pageSize,
+                                                      @Query("resultOffset") Integer pageOffset,
+                                                      @Query("att")List<String> dietaryRestrictions);
 
     //encoded = true should preserve '/' from id.
     @GET("recipe/{id}")

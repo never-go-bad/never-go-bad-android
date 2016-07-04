@@ -1,5 +1,6 @@
 package io.github.nevergobad.dependencyinjection;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -12,10 +13,10 @@ import io.github.nevergobad.services.RecipeService;
  */
 
 @Module
-class RecipeServiceModule {
+public class RecipeServiceModule {
+    @Inject RecipeService mRecipeService;
 
     @Provides
-    @Singleton
     RecipeService provideRecipeService(RecipeEndpoints recipeEndpoints) {
         return new RecipeService(recipeEndpoints);
     }

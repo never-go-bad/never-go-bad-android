@@ -12,7 +12,7 @@ android {
     buildToolsVersion "24.0.0"
 
     defaultConfig {
-        applicationId "com.codepath.nevergobad"
+        applicationId "io.github.nevergobad"
         minSdkVersion 16
         targetSdkVersion 24
         versionCode 1
@@ -47,7 +47,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
     testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.0.62-beta'
+    testCompile 'org.mockito:mockito-core:2.0.71-beta'
     testCompile 'org.hamcrest:hamcrest-library:1.3'
 
     // AppCompat and Design
@@ -70,7 +70,7 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
 
     //Reactive Programming
-    compile 'io.reactivex:rxandroid:1.2.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
     compile "com.squareup.retrofit2:adapter-rxjava:${project.retrofit2Version}"
 
@@ -84,5 +84,8 @@ dependencies {
     //compile 'com.squareup.picasso:picasso:2.5.2'
     //Glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile ('com.github.bumptech.glide:okhttp3-integration:1.4.0@aar') {
+        exclude group: 'glide-parent'
+    }
     compile "com.android.support:support-v4:${project.supportLibraryVersion}"
 }

@@ -8,13 +8,16 @@ import android.support.annotation.VisibleForTesting;
 import io.github.nevergobad.models.DietaryRestriction;
 import io.github.nevergobad.models.Recipe;
 import io.github.nevergobad.models.RecipeSearchResult;
+import io.github.nevergobad.models.RecipeSearchResultsWire;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * Created by andre on 10/06/16.
@@ -22,6 +25,7 @@ import rx.Observable;
 
 public class RecipeService {
     private RecipeEndpoints mRecipeEndpoints;
+    private static RecipeSearchResultMapper sSearchResultMapper = new RecipeSearchResultMapper();
 
     @Inject
     public RecipeService(RecipeEndpoints recipeEndpoints) {
@@ -32,15 +36,16 @@ public class RecipeService {
         return mRecipeEndpoints.retrieveRecipe(recipeId);
     }
 
-    public Observable<RecipeSearchResult> searchRecipes(@NonNull String searchTerms,
-                                                        int page,
-                                                        int pageSize,
-                                                        List<DietaryRestriction> dietaryRestrictionList) {
+    public Observable<List<RecipeSearchResult>> searchRecipes(@NonNull String searchTerms,
+                                                              int page,
+                                                              int pageSize,
+                                                              List<DietaryRestriction> dietaryRestrictionList) {
 
         final int offset = calculatePageOffset(page, pageSize);
         List<String> dietaryRestrictions = convertDietaryRestrictionsToQuery(dietaryRestrictionList);
 
-        return mRecipeEndpoints.searchRecipes(searchTerms, page, pageSize, offset, dietaryRestrictions);
+        return mRecipeEndpoints.searchRecipes(searchTerms, page, pageSize, offset,
+                dietaryRestrictions).map(sSearchResultMapper);
     }
 
     @VisibleForTesting
@@ -49,7 +54,7 @@ public class RecipeService {
         List<String> dietaryRestrictions = null;
         if (dietaryRestrictionList != null && !dietaryRestrictionList.isEmpty()) {
             dietaryRestrictions = new ArrayList<>(dietaryRestrictionList.size());
-            for (DietaryRestriction dietaryRestriction: dietaryRestrictionList) {
+            for (DietaryRestriction dietaryRestriction : dietaryRestrictionList) {
                 dietaryRestrictions.add(dietaryRestriction.value());
             }
         }
@@ -69,4 +74,25 @@ public class RecipeService {
 
         return (page - 1) * pageSize + 1;
     }
+
+
+    @VisibleForTesting
+    static class RecipeSearchResultMapper implements Func1<RecipeSearchResultsWire, List<RecipeSearchResult>> {
+
+        @NonNull
+        @Override
+        public List<RecipeSearchResult> call(@Nullable RecipeSearchResultsWire recipeSearchResultsWire) {
+            if (recipeSearchResultsWire != null && recipeSearchResultsWire.recipes != null) {
+                List<RecipeSearchResult> list = new ArrayList<>(recipeSearchResultsWire.recipes.length);
+                for (RecipeSearchResultsWire.RecipeSummary summary : recipeSearchResultsWire.recipes) {
+                    list.add(RecipeSearchResult.from(summary));
+                }
+                return list;
+            } else {
+                return Collections.emptyList();
+            }
+        }
+    }
+
+
 }

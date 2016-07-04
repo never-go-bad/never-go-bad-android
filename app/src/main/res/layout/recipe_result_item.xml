@@ -1,52 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_gravity="center"
-             android:padding="10dp"
-             tools:background="#eeeeee">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v7.widget.CardView
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="recipe"
+            type="io.github.nevergobad.models.RecipeSearchResult"/>
+    </data>
+
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="2dp"
-        app:contentPadding="5dp">
+        android:layout_gravity="center"
+        android:padding="10dp"
+        tools:background="#eeeeee">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:cardCornerRadius="5dp"
+            app:cardElevation="2dp"
+            app:contentPadding="5dp">
 
-            <ImageView
-                android:layout_width="@dimen/recipe_placeholder_img_width"
-                android:layout_height="@dimen/recipe_placeholder_img_height"
-                app:srcCompat="@drawable/ic_placeholder_recipe"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:ellipsize="end"
-                android:lines="2"
-                tools:text="Pizza de Frango com Catupiry de cabra maltês"/>
-
-            <RatingBar
-                style="@style/Widget.AppCompat.RatingBar.Small"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                tools:numStars="4"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:progressDrawable="@drawable/abc_ratingbar_small_material"
-                android:indeterminateDrawable="@drawable/abc_ratingbar_small_material"
-                android:isIndicator="true"
-                tools:rating="2"
-                android:id="@+id/ratingBar"/>
+                android:orientation="vertical">
 
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="@dimen/recipe_placeholder_img_width"
+                    android:layout_height="@dimen/recipe_placeholder_img_height"
+                    app:imageUrl="@{recipe.imageUrl}"
+                    app:placeholder="@{@drawable/ic_placeholder_recipe}"
+                    app:error="@{@drawable/ic_placeholder_recipe}"
+                    tools:src="@drawable/ic_placeholder_recipe"/>
 
-</FrameLayout>
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:lines="2"
+                    android:text="@{recipe.description}"
+                    tools:text="Pizza de Frango com Catupiry de cabra maltês"/>
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:indeterminateDrawable="@drawable/abc_ratingbar_small_material"
+                    android:isIndicator="true"
+                    android:progressDrawable="@drawable/abc_ratingbar_small_material"
+                    android:numStars="@{recipe.MAX_RATING}"
+                    android:rating="@{recipe.rating}"
+                    android:visibility="@{recipe.rating > 0 ? View.VISIBLE : View.INVISIBLE}"
+                    tools:visibility="visible"
+                    tools:rating="2"/>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </FrameLayout>
+</layout>

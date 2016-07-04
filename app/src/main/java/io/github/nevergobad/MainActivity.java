@@ -15,6 +15,8 @@ import com.roughike.bottombar.OnMenuTabClickListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ViewPager mPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ViewPager pager = (ViewPager) findViewById(R.id.view_pager);
-        pager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
+        mPager = (ViewPager) findViewById(R.id.view_pager);
+        mPager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onMenuTabSelected(@IdRes int menuItemId) {
-
+                switch (menuItemId) {
+                    case R.id.nav_recipes:
+                        mPager.setCurrentItem(0, true);
+                        break;
+                    case R.id.nav_settings:
+                        mPager.setCurrentItem(1, true);
+                }
             }
 
             @Override
