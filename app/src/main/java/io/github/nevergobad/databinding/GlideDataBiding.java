@@ -10,14 +10,20 @@ import com.bumptech.glide.Glide;
  * Created by aoriani on 7/2/16.
  */
 
-public class GlideDataBiding {
+public final class GlideDataBiding {
 
-    @BindingAdapter({"imageUrl"})
+    private static final String IMAGE_URL_ATTR = "imageUrl";
+    private static final String PLACEHOLDER_ATTR = "placeholder";
+    private static final String ERROR_ATTR = "error";
+
+    private GlideDataBiding() {}
+
+    @BindingAdapter({IMAGE_URL_ATTR})
     public static void glideSetterImageUrl(ImageView imageView, String imageUrl) {
         Glide.with(imageView.getContext()).load(imageUrl).into(imageView);
     }
 
-    @BindingAdapter({"imageUrl", "placeholder"})
+    @BindingAdapter({IMAGE_URL_ATTR, PLACEHOLDER_ATTR})
     public static void glideSetterImageUrlPlaceholder(ImageView imageView, String imageUrl,
                                                       Drawable placeholder) {
         Glide.with(imageView.getContext())
@@ -26,7 +32,7 @@ public class GlideDataBiding {
                 .into(imageView);
     }
 
-    @BindingAdapter({"imageUrl", "error"})
+    @BindingAdapter({IMAGE_URL_ATTR, ERROR_ATTR})
     public static void glideSetterImageUrlError(ImageView imageView, String imageUrl,
                                                 Drawable error) {
         Glide.with(imageView.getContext())
@@ -35,7 +41,7 @@ public class GlideDataBiding {
                 .into(imageView);
     }
 
-    @BindingAdapter({"imageUrl", "placeholder", "error"})
+    @BindingAdapter({IMAGE_URL_ATTR, PLACEHOLDER_ATTR, ERROR_ATTR})
     public static void glideSetterImageUrlError(ImageView imageView, String imageUrl,
                                                 Drawable placeholder, Drawable error) {
         Glide.with(imageView.getContext())

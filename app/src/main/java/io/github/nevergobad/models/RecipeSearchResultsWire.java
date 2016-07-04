@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 /**
  * Created by aoriani on 5/1/16.
  */
-public class RecipeSearchResultsWire {
+public final class RecipeSearchResultsWire {
 
     public RecipeSummary[] recipes;
 

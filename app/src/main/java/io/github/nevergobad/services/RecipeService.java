@@ -16,7 +16,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.Observable;
+import rx.Single;
 import rx.functions.Func1;
 
 /**
@@ -32,14 +32,14 @@ public class RecipeService {
         mRecipeEndpoints = recipeEndpoints;
     }
 
-    public Observable<Recipe> retrieveRecipe(@NonNull String recipeId) {
+    public Single<Recipe> retrieveRecipe(@NonNull String recipeId) {
         return mRecipeEndpoints.retrieveRecipe(recipeId);
     }
 
-    public Observable<List<RecipeSearchResult>> searchRecipes(@NonNull String searchTerms,
-                                                              int page,
-                                                              int pageSize,
-                                                              List<DietaryRestriction> dietaryRestrictionList) {
+    public Single<List<RecipeSearchResult>> searchRecipes(@NonNull String searchTerms,
+                                                          int page,
+                                                          int pageSize,
+                                                          List<DietaryRestriction> dietaryRestrictionList) {
 
         final int offset = calculatePageOffset(page, pageSize);
         List<String> dietaryRestrictions = convertDietaryRestrictionsToQuery(dietaryRestrictionList);

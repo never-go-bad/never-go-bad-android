@@ -48,4 +48,19 @@ public class RecipeSearchResultMapperTest {
         assertThat(result, is(notNullValue()));
         assertThat(result, hasSize(0));
     }
+
+    @Test
+    public void validEntryWithElementShallReturnList() {
+        final RecipeSearchResultsWire.RecipeSummary recipe1 = new RecipeSearchResultsWire.RecipeSummary();
+        recipe1.id = "foo";
+        recipe1.name = "bar";
+
+        final RecipeSearchResultsWire.RecipeSummary recipe2 = new RecipeSearchResultsWire.RecipeSummary();
+        recipe2.id = "foo";
+        recipe2.name = "bar";
+
+
+
+
+    }
 }

@@ -51,6 +51,11 @@ public class RecipeSearchResultAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return VIEW_TYPE_ITEM;
+    }
+
+    @Override
     public int getItemCount() {
         return mSearchResults.size();
     }
