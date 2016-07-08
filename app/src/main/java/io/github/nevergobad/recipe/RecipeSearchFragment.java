@@ -3,8 +3,8 @@ package io.github.nevergobad.recipe;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +13,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import io.github.nevergobad.R;
+import io.github.nevergobad.databinding.RecipeSearchFragmentBinding;
 import io.github.nevergobad.dependencyinjection.ComponentManager;
 import io.github.nevergobad.dependencyinjection.RecipeServiceModule;
 import io.github.nevergobad.models.RecipeSearchResult;
@@ -33,8 +31,8 @@ public class RecipeSearchFragment extends Fragment {
     @Inject
     RecipeService mRecipeService;
 
-    @BindView(R.id.list)
-    RecyclerView mListView;
+    RecipeSearchFragmentBinding mBinding;
+
     private RecipeSearchResultAdapter mAdapter;
 
     public RecipeSearchFragment() {
@@ -46,16 +44,15 @@ public class RecipeSearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recipe_search_fragment, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        mBinding = RecipeSearchFragmentBinding.inflate(inflater, container, false);
+        return mBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mListView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mBinding.list.setLayoutManager(new GridLayoutManager(getContext(), 2));
         mAdapter = new RecipeSearchResultAdapter();
-        mListView.setAdapter(mAdapter);
+        mBinding.list.setAdapter(mAdapter);
     }
 
     @Override

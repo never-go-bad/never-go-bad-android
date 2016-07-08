@@ -17,7 +17,7 @@ import rx.Single;
  */
 public interface RecipeEndpoints {
 
-    @GET("recipes?sort=1") //sort=1 sort by rating
+    @GET("v2/recipes?sort=1") //sort=1 sort by rating
     Single<RecipeSearchResultsWire> searchRecipes(@NonNull @Query("search") String searchTerms,
                                                   @Query("pageNumber") Integer pageNumber,
                                                   @Query("pageSize") Integer pageSize,

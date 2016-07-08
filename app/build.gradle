@@ -5,7 +5,6 @@ project.ext {
     supportLibraryVersion = '24.0.0'
     daggerVersion = '2.5'
     retrofit2Version = '2.1.0'
-    butterKnifeVersion = '8.1.0'
 }
 
 android {
@@ -26,7 +25,8 @@ android {
         }
         //vectorDrawables.useSupportLibrary = true
 
-        buildConfigField "String", "RECIPE_BASE_URL", "\"https://gentle-forest-65806.herokuapp.com\""
+        //buildConfigField "String", "RECIPE_BASE_URL", "\"https://gentle-forest-65806.herokuapp.com\""
+        buildConfigField "String", "RECIPE_BASE_URL", "\"http://10.0.2.2:5000\""
     }
 
     buildTypes {
@@ -75,10 +75,6 @@ dependencies {
     compile "com.google.dagger:dagger:${project.daggerVersion}"
     apt "com.google.dagger:dagger-compiler:${project.daggerVersion}"
     provided 'javax.annotation:jsr250-api:1.0'
-
-    //ButterKnife
-    compile "com.jakewharton:butterknife:${project.butterKnifeVersion}"
-    apt "com.jakewharton:butterknife-compiler:${project.butterKnifeVersion}"
 
     //Reactive Programming
     compile 'io.reactivex:rxandroid:1.2.1'
