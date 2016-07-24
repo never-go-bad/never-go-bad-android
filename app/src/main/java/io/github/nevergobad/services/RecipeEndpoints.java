@@ -2,7 +2,7 @@ package io.github.nevergobad.services;
 
 import android.support.annotation.NonNull;
 
-import io.github.nevergobad.models.Recipe;
+import io.github.nevergobad.models.RecipeWire;
 import io.github.nevergobad.models.RecipeSearchResultsWire;
 
 import java.util.List;
@@ -25,5 +25,5 @@ public interface RecipeEndpoints {
                                                   @Query("att") List<String> dietaryRestrictions);
 
     @GET("recipe/{id}") //id works a path
-    Single<Recipe> retrieveRecipe(@NonNull @Path(value = "id", encoded = true) String id); //encoded = true should preserve '/' from id.
+    Single<RecipeWire> retrieveRecipe(@NonNull @Path(value = "id", encoded = true) String id); //encoded = true should preserve '/' from id.
 }

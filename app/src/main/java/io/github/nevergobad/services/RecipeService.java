@@ -7,6 +7,7 @@ import android.support.annotation.VisibleForTesting;
 
 import io.github.nevergobad.models.DietaryRestriction;
 import io.github.nevergobad.models.Recipe;
+import io.github.nevergobad.models.RecipeWire;
 import io.github.nevergobad.models.RecipeSearchResult;
 import io.github.nevergobad.models.RecipeSearchResultsWire;
 
@@ -26,6 +27,7 @@ import rx.functions.Func1;
 public class RecipeService {
     private RecipeEndpoints mRecipeEndpoints;
     private static RecipeSearchResultMapper sSearchResultMapper = new RecipeSearchResultMapper();
+    private static RecipeMapper sRecipeMapper = new RecipeMapper();
 
     @Inject
     public RecipeService(RecipeEndpoints recipeEndpoints) {
@@ -33,7 +35,7 @@ public class RecipeService {
     }
 
     public Single<Recipe> retrieveRecipe(@NonNull String recipeId) {
-        return mRecipeEndpoints.retrieveRecipe(recipeId);
+        return mRecipeEndpoints.retrieveRecipe(recipeId).map(sRecipeMapper);
     }
 
     public Single<List<RecipeSearchResult>> searchRecipes(@NonNull String searchTerms,
@@ -90,6 +92,19 @@ public class RecipeService {
                 return list;
             } else {
                 return Collections.emptyList();
+            }
+        }
+    }
+
+    @VisibleForTesting
+    static class RecipeMapper implements Func1<RecipeWire, Recipe> {
+
+        @Override
+        public Recipe call(@Nullable RecipeWire wire) {
+            if (wire != null) {
+                return Recipe.from(wire);
+            } else {
+                return null;
             }
         }
     }

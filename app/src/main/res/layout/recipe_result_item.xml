@@ -10,6 +10,10 @@
         <variable
             name="recipe"
             type="io.github.nevergobad.models.RecipeSearchResult"/>
+
+        <variable
+            name="presenter"
+            type="io.github.nevergobad.recipe.RecipeItemPresenter"/>
     </data>
 
     <FrameLayout
@@ -22,11 +26,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
             app:cardCornerRadius="5dp"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="true"
+            android:onClick="@{() -> presenter.onRecipeItemClicked(context, recipe)}"
             app:contentPadding="0dp">
 
             <LinearLayout
@@ -40,16 +44,18 @@
                     android:layout_height="@dimen/recipe_placeholder_img_height"
                     app:error="@{@drawable/ic_placeholder_recipe}"
                     app:imageUrl="@{recipe.imageUrl}"
+                    android:contentDescription="@{recipe.description}"
                     app:placeholder="@{@drawable/ic_placeholder_recipe}"
                     tools:src="@drawable/ic_placeholder_recipe"/>
 
                 <TextView
+                    style="?android:attr/textAppearanceMedium"
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
                     android:ellipsize="end"
                     android:lines="2"
                     android:text="@{recipe.description}"
@@ -60,9 +66,9 @@
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:indeterminateDrawable="@drawable/abc_ratingbar_small_material"
                     android:isIndicator="true"

@@ -51,7 +51,7 @@ public class TimePreference extends DialogPreference {
         setDialogLayoutResource(R.layout.time_preference_dialog);
         setWidgetLayoutResource(R.layout.time_preference_widget);
         setDialogTitle(R.string.settings_section_notification_time_dialog_title);
-        setPositiveButtonText(R.string.set);
+        setPositiveButtonText(R.string.time_preference_set);
         setDialogIcon(null);
     }
 

@@ -25,7 +25,7 @@ import static org.junit.Assert.assertThat;
  */
 
 @RunWith(MockitoJUnitRunner.class)
-public class RecipeServiceTest {
+public class RecipeWireServiceTest {
 
     private RecipeService mRecipeService;
     private @Mock RecipeEndpoints mRecipeEndpoints;

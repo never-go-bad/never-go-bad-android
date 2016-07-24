@@ -21,7 +21,11 @@
     <string name="settings_section_notification_time_summary">Select the best time to be notified of items about to expire.</string>
     <string name="settings_section_notification_notification_enabled">Enable Notifications</string>
 
-    <string name="set">set</string>
+    <string name="time_preference_set">set</string>
+    <string name="title_activity_recipe_details">RecipeDetailsActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="recipe_details_loading_recipe">Loading Recipe…</string>
+    <string name="recipe_details_retry">Retry</string>
 
 
 </resources>

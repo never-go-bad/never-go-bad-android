@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
  * Created by aoriani on 7/3/16.
  */
 
-public class RecipeSearchResultMapperTest {
+public class RecipeWireSearchResultMapperTest {
 
     private RecipeService.RecipeSearchResultMapper mResultMapper;
 
