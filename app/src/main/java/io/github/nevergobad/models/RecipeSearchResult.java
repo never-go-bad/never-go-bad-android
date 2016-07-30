@@ -9,15 +9,13 @@ import android.support.annotation.Nullable;
 
 public final class RecipeSearchResult {
 
-    public static final int MAX_RATING = 4;
-
     public final @NonNull String id;
     public final @NonNull String description;
     public final @Nullable String imageUrl;
     public final float rating;
 
     private RecipeSearchResult(RecipeSearchResultsWire.RecipeSummary data) {
-        id = data.id;
+        id = data.id.startsWith("/") ? data.id.substring(1) : data.id;
         description = data.name;
         imageUrl = data.image;
         rating = data.rating == null ? 0f : data.rating.floatValue();
@@ -38,7 +36,6 @@ public final class RecipeSearchResult {
         if (!id.equals(that.id)) return false;
         if (!description.equals(that.description)) return false;
         return imageUrl != null ? imageUrl.equals(that.imageUrl) : that.imageUrl == null;
-
     }
 
     @Override

@@ -7,7 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import io.github.nevergobad.DeepLinkUtils;
 import io.github.nevergobad.databinding.RecipeResultItemBinding;
+import io.github.nevergobad.models.Recipe;
 import io.github.nevergobad.models.RecipeSearchResult;
 
 /**
@@ -36,6 +38,6 @@ class RecipeItemViewHolder extends RecyclerView.ViewHolder implements RecipeItem
 
     @Override
     public void onRecipeItemClicked(Context context, RecipeSearchResult item) {
-        context.startActivity(new Intent(context, RecipeDetailsActivity.class));
+        RecipeDetailsActivity.viewRecipe(context, DeepLinkUtils.recipeFromPath(item.id), item.description);
     }
 }

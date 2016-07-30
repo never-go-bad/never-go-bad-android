@@ -8,11 +8,13 @@ import android.support.annotation.NonNull;
 
 public final class Recipe {
     public final @NonNull String title;
+    public final double rating;
 
 
 
     private Recipe(@NonNull RecipeWire wire) {
         title = wire.name;
+        rating = wire.rating;
     }
 
     public static Recipe from(RecipeWire wire) {

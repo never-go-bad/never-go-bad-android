@@ -3,6 +3,17 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <import type="io.github.nevergobad.recipe.RecipeDetailsActivity.State" />
+        <import type="android.view.View"/>
+        <variable
+            name="presenter"
+            type="io.github.nevergobad.recipe.RecipeDetailsActivity.Presenter" />
+        <variable
+            name="recipe"
+            type="io.github.nevergobad.models.Recipe"/>
+    </data>
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -10,6 +21,7 @@
         tools:context="io.github.nevergobad.recipe.RecipeDetailsActivity"
         tools:showIn="@layout/activity_recipe_details">
 
+        <!-- Loading State -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,7 +33,7 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="20dp"
-                android:visibility="gone">
+                android:visibility="@{presenter.state == State.LOADING ? View.VISIBLE : View.GONE}">
 
                 <ProgressBar
                     style="@style/Widget.AppCompat.ProgressBar"
@@ -38,13 +50,14 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
             </LinearLayout>
 
+            <!-- Error State -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="20dp"
-                android:visibility="gone">
+                android:visibility="@{presenter.state == State.FAILURE ? View.VISIBLE : View.GONE}">
 
                 <TextView
                     android:layout_width="0dp"
@@ -62,7 +75,8 @@
 
             </LinearLayout>
 
-            <include layout="@layout/recipe_details_recipe"/>
+            <!-- Content State -->
+            <include layout="@layout/recipe_details_recipe" app:presenter="@{presenter}" app:recipe="@{recipe}"/>
         </FrameLayout>
 
     </android.support.v4.widget.NestedScrollView>

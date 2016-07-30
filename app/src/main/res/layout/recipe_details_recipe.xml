@@ -1,57 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    tools:showIn="@layout/content_recipe_details">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:isIndicator="true"/>
+    <data>
+        <import type="io.github.nevergobad.recipe.RecipeDetailsActivity.State" />
+        <import type="android.view.View"/>
+        <variable
+            name="presenter"
+            type="io.github.nevergobad.recipe.RecipeDetailsActivity.Presenter" />
+        <variable
+            name="recipe"
+            type="io.github.nevergobad.models.Recipe"/>
 
-    <TextView
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        tools:text="98% would make it again"
-        tools:textAllCaps="true"/>
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="@{presenter.state == State.LOADED ? View.VISIBLE : View.GONE}"
+        tools:showIn="@layout/content_recipe_details">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Este gnocchi a bolonhesa é super especial. Foi feito por minha vó com batatas plantadas
+        <RatingBar
+            style="@style/Base.Widget.AppCompat.RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="@integer/num_stars_rating"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="98% would make it again"
+            tools:textAllCaps="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Este gnocchi a bolonhesa é super especial. Foi feito por minha vó com batatas plantadas
         em seu humilde quintal em Piracicaba interior de São Paulo."/>
 
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabGravity="center"
+            app:tabMode="scrollable">
 
-    <android.support.design.widget.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabGravity="center"
-        app:tabMode="scrollable">
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Ingredients"/>
 
-        <android.support.design.widget.TabItem
-            android:text="Ingredients"
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content"/>
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Procedures"/>
+        </android.support.design.widget.TabLayout>
 
-        <android.support.design.widget.TabItem
-            android:text="Procedures"
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content"/>
-    </android.support.design.widget.TabLayout>
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        </android.support.v4.view.ViewPager>
 
-    </android.support.v4.view.ViewPager>
+    </LinearLayout>
+</layout>
 
-</LinearLayout>
 
-        

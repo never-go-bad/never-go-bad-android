@@ -1,6 +1,7 @@
 package io.github.nevergobad.dependencyinjection;
 
 import dagger.Subcomponent;
+import io.github.nevergobad.recipe.RecipeDetailsActivity;
 import io.github.nevergobad.recipe.RecipeSearchFragment;
 
 /**
@@ -10,4 +11,5 @@ import io.github.nevergobad.recipe.RecipeSearchFragment;
 @Subcomponent(modules = {RecipeServiceModule.class})
 public interface RecipeServiceComponent {
     void inject (RecipeSearchFragment recipeSearchFragment);
+    void inject (RecipeDetailsActivity recipeDetailsActivity);
 }

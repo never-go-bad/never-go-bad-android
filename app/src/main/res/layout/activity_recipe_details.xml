@@ -4,6 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="presenter"
+            type="io.github.nevergobad.recipe.RecipeDetailsActivity.Presenter"/>
+        <variable
+            name="recipe"
+            type="io.github.nevergobad.models.Recipe"/>
+
+    </data>
+
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,13 +51,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
-            app:layout_anchor="@id/app_bar"
-            app:layout_anchorGravity="bottom|end"
-            app:backgroundTint="#333"
+            android:onClick="@{presenter::shareRecipe}"
+            android:src="@drawable/ic_share_black_24dp"
             android:tint="@android:color/white"
-            android:src="@drawable/ic_share_black_24dp"/>
+            app:backgroundTint="#333"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="bottom|end"/>
 
-        <include layout="@layout/content_recipe_details"/>
+        <include
+            layout="@layout/content_recipe_details"
+            app:presenter="@{presenter}"
+            app:recipe="@{recipe}"/>
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

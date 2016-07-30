@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
  */
 public final class RecipeWire {
     public String name;
-    public double rating;
+    public float rating;
     public String wouldPrepareAgain;
     public @Nullable String description;
     public @Nullable String image;
@@ -15,8 +15,8 @@ public final class RecipeWire {
     public @Nullable String activeTime;
     public @Nullable String totalTime;
     public @Nullable String[] chefNotes;
-    public IngredientGroup ingredientGroups;
-    public PreparationStepGroup preparationStepGroups;
+    public IngredientGroup[] ingredientGroups;
+    public PreparationStepGroup[] preparationStepGroups;
 
     public final static class IngredientGroup {
         public @Nullable String groupName;

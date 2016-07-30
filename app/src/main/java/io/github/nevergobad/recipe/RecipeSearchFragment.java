@@ -54,6 +54,7 @@ public class RecipeSearchFragment extends Fragment {
         mBinding.list.setAdapter(mAdapter);
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
