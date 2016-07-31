@@ -27,6 +27,8 @@
     <string name="recipe_details_loading_recipe">Loading Recipe…</string>
     <string name="recipe_details_retry">Retry</string>
     <string name="recipe_details_title">Recipe</string>
+    <string name="recipe_details_would_make_it_again">%1$s would make it again</string>
+    <string name="recipe_details_see_in_epicurious_com">See in Epicurious.com</string>
 
 
 </resources>

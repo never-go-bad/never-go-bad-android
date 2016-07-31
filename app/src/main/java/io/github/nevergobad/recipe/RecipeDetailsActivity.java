@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -28,6 +29,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class RecipeDetailsActivity extends AppCompatActivity {
+    private static final String TAG = "RecipeDetailsActivity";
 
     private static final String EXTRA_TITLE = "title";
 
@@ -107,17 +109,32 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             mRecipeService.retrieveRecipe(mRecipePath).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread()).subscribe(new SingleSubscriber<Recipe>() {
                 @Override
-                public void onSuccess(Recipe value) {
+                public void onSuccess(Recipe recipe) {
+                    mBinding.setRecipe(recipe);
                     setState(State.LOADED);
                 }
 
                 @Override
                 public void onError(Throwable error) {
                     setState(State.FAILURE);
+                    Log.e(TAG, "Presenter::loadRecipe - onError: ", error);
                 }
             });
         }
 
-
+        public void seeInEpicurious(View v) {
+            Uri epicuriousUri = new Uri.Builder()
+                    .scheme("https")
+                    .authority("www.epicurious.com")
+                    .appendEncodedPath(mRecipePath)
+                    .build();
+            new CustomTabsIntent.Builder()
+                    .setShowTitle(true)
+                    .setToolbarColor(getResources().getColor(R.color.colorAccent))
+                    .enableUrlBarHiding()
+                    .addDefaultShareMenuItem()
+                    .build()
+                    .launchUrl(RecipeDetailsActivity.this, epicuriousUri);
+        }
     }
 }

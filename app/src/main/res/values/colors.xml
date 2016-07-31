@@ -5,5 +5,7 @@
     <color name="colorAccent">#9F041B</color>
 
     <!-- Override bottom bar library -->
-    <color name="bb_darkBackgroundColor">#555</color>
+    <color name="bb_darkBackgroundColor">@color/darkColorBackground</color>
+    <color name="darkColorBackground">#333</color>
+    <color name="tab_selected">#19FFFFFF</color>
 </resources>

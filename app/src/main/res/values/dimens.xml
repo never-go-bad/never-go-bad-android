@@ -6,6 +6,6 @@
     <dimen name="recipe_placeholder_img_dimension">180dp</dimen>
     <dimen name="recipe_placeholder_img_width">@dimen/recipe_placeholder_img_dimension</dimen>
     <dimen name="recipe_placeholder_img_height">@dimen/recipe_placeholder_img_dimension</dimen>
-    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="app_bar_height">300dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 </resources>
