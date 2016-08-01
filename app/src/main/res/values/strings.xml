@@ -29,6 +29,10 @@
     <string name="recipe_details_title">Recipe</string>
     <string name="recipe_details_would_make_it_again">%1$s would make it again</string>
     <string name="recipe_details_see_in_epicurious_com">See in Epicurious.com</string>
+    <string name="recipe_details_servings"><![CDATA[<b>Servings:</b> %1$s]]></string>
+    <string name="recipe_details_active_time"><![CDATA[<b>Active Time:</b> %1$s]]></string>
+    <string name="recipe_details_total_time"><![CDATA[<b>Total Time:</b> %1$s]]></string>
+    <string name="html_line_break"><![CDATA[<br/>]]></string>
 
 
 </resources>

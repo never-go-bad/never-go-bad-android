@@ -34,6 +34,7 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="20dp"
+                tools:visibility="gone"
                 android:visibility="@{presenter.state == State.LOADING ? View.VISIBLE : View.GONE}">
 
                 <ProgressBar
@@ -58,6 +59,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="20dp"
+                tools:visibility="gone"
                 android:visibility="@{presenter.state == State.FAILURE ? View.VISIBLE : View.GONE}">
 
                 <TextView

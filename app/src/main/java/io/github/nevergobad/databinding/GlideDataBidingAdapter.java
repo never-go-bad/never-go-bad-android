@@ -10,13 +10,13 @@ import com.bumptech.glide.Glide;
  * Created by aoriani on 7/2/16.
  */
 
-public final class GlideDataBiding {
+public final class GlideDataBidingAdapter {
 
     private static final String IMAGE_URL_ATTR = "imageUrl";
     private static final String PLACEHOLDER_ATTR = "placeholder";
     private static final String ERROR_ATTR = "error";
 
-    private GlideDataBiding() {}
+    private GlideDataBidingAdapter() {}
 
     @BindingAdapter({IMAGE_URL_ATTR})
     public static void glideSetterImageUrl(ImageView imageView, String imageUrl) {
@@ -48,6 +48,7 @@ public final class GlideDataBiding {
                 .load(imageUrl)
                 .placeholder(placeholder)
                 .error(error)
+                .crossFade()
                 .into(imageView);
     }
 

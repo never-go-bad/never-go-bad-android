@@ -46,6 +46,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@{recipe.getServingInfo(context)}"
+            tools:text="Total Servings: 4 portions"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@{recipe.infoText}"
             tools:text="Este gnocchi a bolonhesa é super especial. Foi feito por minha vó com batatas plantadas
         em seu humilde quintal em Piracicaba interior de São Paulo."/>

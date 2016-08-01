@@ -42,7 +42,8 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     private ActivityRecipeDetailsBinding mBinding;
 
 
-    public static void viewRecipe(@NonNull Context context, @NonNull Uri recipeUri, @Nullable String title) {
+    public static void viewRecipe(@NonNull Context context, @NonNull Uri recipeUri,
+                                  @Nullable String title) {
         Intent intent = new Intent(context, RecipeDetailsActivity.class);
         intent.setData(recipeUri);
         if (!TextUtils.isEmpty(title)) {
@@ -70,11 +71,6 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         mPresenter = new Presenter();
         mBinding.setPresenter(mPresenter);
         mPresenter.loadRecipe();
-
-
-
-
-
     }
 
 
@@ -128,6 +124,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                     .authority("www.epicurious.com")
                     .appendEncodedPath(mRecipePath)
                     .build();
+
             new CustomTabsIntent.Builder()
                     .setShowTitle(true)
                     .setToolbarColor(getResources().getColor(R.color.colorAccent))

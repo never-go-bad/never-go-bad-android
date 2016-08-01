@@ -1,7 +1,7 @@
 package io.github.nevergobad.recipe;
 
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import io.github.nevergobad.DeepLinkUtils;
 import io.github.nevergobad.databinding.RecipeResultItemBinding;
-import io.github.nevergobad.models.Recipe;
 import io.github.nevergobad.models.RecipeSearchResult;
 
 /**
@@ -38,6 +37,8 @@ class RecipeItemViewHolder extends RecyclerView.ViewHolder implements RecipeItem
 
     @Override
     public void onRecipeItemClicked(Context context, RecipeSearchResult item) {
-        RecipeDetailsActivity.viewRecipe(context, DeepLinkUtils.recipeFromPath(item.id), item.description);
+        Bitmap thumb = null;
+        RecipeDetailsActivity.viewRecipe(context, DeepLinkUtils.recipeFromPath(item.id),
+                item.description);
     }
 }
