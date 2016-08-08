@@ -64,19 +64,8 @@
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:onClick="@{presenter::shareRecipe}"
-            android:src="@drawable/ic_share_black_24dp"
-            android:tint="@android:color/white"
-            app:backgroundTint="@color/darkColorBackground"
-            app:layout_anchor="@id/app_bar"
-            app:layout_anchorGravity="bottom|end"/>
-
         <include
+            android:id="@+id/content"
             layout="@layout/content_recipe_details"
             app:presenter="@{presenter}"
             app:recipe="@{recipe}"/>

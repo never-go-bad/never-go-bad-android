@@ -67,6 +67,7 @@
 
         <android.support.design.widget.TabLayout
             style="@style/Base.Widget.Design.TabLayout"
+            android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:tabMode="fixed"
@@ -76,25 +77,13 @@
             app:tabTextColor="#888"
             app:tabIndicatorHeight="5dp"
             app:tabBackground="@drawable/tab_background"
-            app:tabSelectedTextColor="@android:color/white">
+            app:tabSelectedTextColor="@android:color/white"/>
 
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Ingredients"/>
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Procedures"/>
-        </android.support.design.widget.TabLayout>
-
-        <android.support.v4.view.ViewPager
+        <io.github.nevergobad.recipe.WrapContentViewPager
+            android:id="@+id/view_pager"
+            android:background="#eee"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#eee">
-
-        </android.support.v4.view.ViewPager>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </layout>

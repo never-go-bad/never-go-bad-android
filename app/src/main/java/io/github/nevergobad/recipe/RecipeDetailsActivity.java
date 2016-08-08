@@ -64,9 +64,13 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         setTitle(mTitle);
 
         setSupportActionBar(mBinding.toolbar);
+        //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ComponentManager.get().getNetworkComponent().plus(new RecipeServiceModule()).inject(this);
+
+        mBinding.content.recipeDetail.tabs.setupWithViewPager(mBinding.content.recipeDetail.viewPager);
+
 
         mPresenter = new Presenter();
         mBinding.setPresenter(mPresenter);
@@ -78,6 +82,11 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     // todo presenter state loading error, connection error , loaded finished
     // show loading spinner or retry button
 
+
+    void populateViews(Recipe recipe) {
+        mBinding.content.recipeDetail.viewPager.setAdapter(new ProcedureIngredientPageAdapter(this, recipe));
+        mBinding.content.recipeDetail.viewPager.setOffscreenPageLimit(2);
+    }
 
     public enum State {LOADING, LOADED, FAILURE};
 
@@ -107,6 +116,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(Recipe recipe) {
                     mBinding.setRecipe(recipe);
+                    populateViews(recipe);
                     setState(State.LOADED);
                 }
 
@@ -125,6 +135,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                     .appendEncodedPath(mRecipePath)
                     .build();
 
+            //noinspection deprecation
             new CustomTabsIntent.Builder()
                     .setShowTitle(true)
                     .setToolbarColor(getResources().getColor(R.color.colorAccent))
