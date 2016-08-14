@@ -1,6 +1,7 @@
 package io.github.nevergobad.models;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.BulletSpan;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 
 import io.github.nevergobad.R;
@@ -88,7 +90,8 @@ public final class Recipe {
                 int start = builder.length();
                 builder.append(ingredient);
                 int end = builder.length();
-                builder.setSpan(new BulletSpan(5), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                //FIXME: Use resources
+                builder.setSpan(new BulletSpan(30, Color.RED), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
                 builder.append("\n");
             }
             builder.append("\n");
@@ -112,7 +115,13 @@ public final class Recipe {
 
             final int stepsCount = group.steps.length;
             for (int i = 1; i <= stepsCount; i++) {
-                builder.append(String.valueOf(i)).append(") ").append(group.steps[i-1]).append("\n\n");
+                int start = builder.length();
+                builder.append(String.valueOf(i)).append(")");
+                int end = builder.length();
+                builder.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                builder.setSpan(new ForegroundColorSpan(Color.RED), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+
+                builder.append(" ").append(group.steps[i-1]).append("\n\n");
             }
         }
 

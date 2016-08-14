@@ -46,15 +46,28 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="@{recipe.getServingInfo(context)}"
-            tools:text="Total Servings: 4 portions"/>
+            tools:text="Total Servings: 4 portions"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/pale_red_round_rectangle"
+            android:textSize="16sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{recipe.infoText}"
+            android:padding="20dp"
+            android:typeface="serif"
             tools:text="Este gnocchi a bolonhesa é super especial. Foi feito por minha vó com batatas plantadas
-        em seu humilde quintal em Piracicaba interior de São Paulo."/>
+        em seu humilde quintal em Piracicaba interior de São Paulo."
+            android:textStyle="normal|italic"
+            android:textSize="16sp"
+            android:textAlignment="center"/>
 
         <Button
             style="@style/Base.Widget.AppCompat.Button.Borderless"
@@ -72,6 +85,7 @@
             android:layout_height="60dp"
             app:tabMode="fixed"
             app:tabGravity="fill"
+            android:layout_marginTop="20dp"
             android:background="@color/darkColorBackground"
             app:tabIndicatorColor="@android:color/white"
             app:tabTextColor="#888"
