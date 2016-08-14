@@ -91,6 +91,7 @@ public final class Recipe {
                 builder.setSpan(new BulletSpan(5), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
                 builder.append("\n");
             }
+            builder.append("\n");
         }
 
         return builder;
