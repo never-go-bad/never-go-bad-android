@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
 project.ext {
-    supportLibraryVersion = '24.1.1'
+    supportLibraryVersion = '24.2.0'
     daggerVersion = '2.6.1'
     retrofit2Version = '2.1.0'
 }
