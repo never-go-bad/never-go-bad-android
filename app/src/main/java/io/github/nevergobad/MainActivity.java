@@ -9,9 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import io.github.nevergobad.R;
 import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnMenuTabClickListener;
+import com.roughike.bottombar.OnTabSelectListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,19 +36,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        setupBottomBar(savedInstanceState);
-    }
 
-    private void setupBottomBar(Bundle savedInstanceState) {
-        BottomBar bottomBar = BottomBar.attach(this, savedInstanceState);
-        bottomBar.useDarkTheme();
-        bottomBar.setMaxFixedTabs(0);
-        bottomBar.setItems(R.menu.menu_main);
-        bottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
+        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
 
             @Override
-            public void onMenuTabSelected(@IdRes int menuItemId) {
-                switch (menuItemId) {
+            public void onTabSelected(@IdRes int tabId) {
+                switch (tabId) {
                     case R.id.nav_recipes:
                         mPager.setCurrentItem(0, true);
                         break;
@@ -57,12 +50,34 @@ public class MainActivity extends AppCompatActivity {
                         mPager.setCurrentItem(1, true);
                 }
             }
-
-            @Override
-            public void onMenuTabReSelected(@IdRes int menuItemId) {
-
-            }
         });
+
+        //setupBottomBar(savedInstanceState);
     }
+
+//    private void setupBottomBar(Bundle savedInstanceState) {
+//        BottomBar bottomBar = BottomBar.attach(this, savedInstanceState);
+//        bottomBar.useDarkTheme();
+//        bottomBar.setMaxFixedTabs(0);
+//        bottomBar.setItems(R.menu.menu_main);
+//        bottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
+//
+//            @Override
+//            public void onMenuTabSelected(@IdRes int menuItemId) {
+//                switch (menuItemId) {
+//                    case R.id.nav_recipes:
+//                        mPager.setCurrentItem(0, true);
+//                        break;
+//                    case R.id.nav_settings:
+//                        mPager.setCurrentItem(1, true);
+//                }
+//            }
+//
+//            @Override
+//            public void onMenuTabReSelected(@IdRes int menuItemId) {
+//
+//            }
+//        });
+//    }
 
 }
