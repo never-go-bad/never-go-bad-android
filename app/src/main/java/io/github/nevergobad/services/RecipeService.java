@@ -10,6 +10,8 @@ import io.github.nevergobad.models.Recipe;
 import io.github.nevergobad.models.RecipeWire;
 import io.github.nevergobad.models.RecipeSearchResult;
 import io.github.nevergobad.models.RecipeSearchResultsWire;
+import io.reactivex.Single;
+import io.reactivex.functions.Function;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,8 +19,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.Single;
-import rx.functions.Func1;
 
 /**
  * Created by andre on 10/06/16.
@@ -79,11 +79,11 @@ public class RecipeService {
 
 
     @VisibleForTesting
-    static class RecipeSearchResultMapper implements Func1<RecipeSearchResultsWire, List<RecipeSearchResult>> {
+    static class RecipeSearchResultMapper implements Function<RecipeSearchResultsWire, List<RecipeSearchResult>> {
 
         @NonNull
         @Override
-        public List<RecipeSearchResult> call(@Nullable RecipeSearchResultsWire recipeSearchResultsWire) {
+        public List<RecipeSearchResult> apply(@Nullable RecipeSearchResultsWire recipeSearchResultsWire) {
             if (recipeSearchResultsWire != null && recipeSearchResultsWire.recipes != null) {
                 List<RecipeSearchResult> list = new ArrayList<>(recipeSearchResultsWire.recipes.length);
                 for (RecipeSearchResultsWire.RecipeSummary summary : recipeSearchResultsWire.recipes) {
@@ -97,10 +97,10 @@ public class RecipeService {
     }
 
     @VisibleForTesting
-    static class RecipeMapper implements Func1<RecipeWire, Recipe> {
+    static class RecipeMapper implements Function<RecipeWire, Recipe> {
 
         @Override
-        public Recipe call(@Nullable RecipeWire wire) {
+        public Recipe apply(@Nullable RecipeWire wire) {
             if (wire != null) {
                 return Recipe.from(wire);
             } else {

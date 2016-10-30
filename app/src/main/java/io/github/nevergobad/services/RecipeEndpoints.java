@@ -7,10 +7,10 @@ import io.github.nevergobad.models.RecipeSearchResultsWire;
 
 import java.util.List;
 
+import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import rx.Single;
 
 /**
  * Created by aoriani on 5/1/16.

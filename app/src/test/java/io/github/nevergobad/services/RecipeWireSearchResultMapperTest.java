@@ -35,7 +35,7 @@ public class RecipeWireSearchResultMapperTest {
 
     @Test
     public void nullEntryShallReturnEmptyList() {
-        List<RecipeSearchResult> result = mResultMapper.call(null);
+        List<RecipeSearchResult> result = mResultMapper.apply(null);
         assertThat(result, is(notNullValue()));
         assertThat(result, hasSize(0));
     }
@@ -44,7 +44,7 @@ public class RecipeWireSearchResultMapperTest {
     public void validEntryWithNullArrayShallReturnEmptyList() {
         RecipeSearchResultsWire nullArray = new RecipeSearchResultsWire();
         nullArray.recipes = null;
-        List<RecipeSearchResult> result = mResultMapper.call(null);
+        List<RecipeSearchResult> result = mResultMapper.apply(null);
         assertThat(result, is(notNullValue()));
         assertThat(result, hasSize(0));
     }

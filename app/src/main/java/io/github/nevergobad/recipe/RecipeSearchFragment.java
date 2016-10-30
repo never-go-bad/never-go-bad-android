@@ -17,9 +17,10 @@ import io.github.nevergobad.dependencyinjection.ComponentManager;
 import io.github.nevergobad.dependencyinjection.RecipeServiceModule;
 import io.github.nevergobad.models.RecipeSearchResult;
 import io.github.nevergobad.services.RecipeService;
-import rx.SingleSubscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by aoriani on 6/26/16.
@@ -61,7 +62,12 @@ public class RecipeSearchFragment extends Fragment {
         mRecipeService.searchRecipes("chicken", 1, 10, null)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<List<RecipeSearchResult>>() {
+                .subscribe(new SingleObserver<List<RecipeSearchResult>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
                     @Override
                     public void onSuccess(List<RecipeSearchResult> value) {
                         mAdapter.setItems(value);

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -12,14 +13,13 @@ import dagger.Module;
 import dagger.Provides;
 import io.github.nevergobad.services.RecipeEndpoints;
 import io.github.nevergobad.services.UserAgentInterceptor;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.CallAdapter;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by andre on 05/06/16.
@@ -61,7 +61,7 @@ class NetworkModule {
 
     @Provides
     CallAdapter.Factory providesCallAdapterFactory() {
-        return RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io());
+        return RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io());
     }
 
     @Provides

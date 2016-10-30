@@ -24,9 +24,10 @@ import io.github.nevergobad.dependencyinjection.ComponentManager;
 import io.github.nevergobad.dependencyinjection.RecipeServiceModule;
 import io.github.nevergobad.models.Recipe;
 import io.github.nevergobad.services.RecipeService;
-import rx.SingleSubscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class RecipeDetailsActivity extends AppCompatActivity {
     private static final String TAG = "RecipeDetailsActivity";
@@ -112,7 +113,12 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
         public void loadRecipe() {
             mRecipeService.retrieveRecipe(mRecipePath).subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribe(new SingleSubscriber<Recipe>() {
+                    .observeOn(AndroidSchedulers.mainThread()).subscribe(new SingleObserver<Recipe>() {
+                @Override
+                public void onSubscribe(Disposable d) {
+
+                }
+
                 @Override
                 public void onSuccess(Recipe recipe) {
                     mBinding.setRecipe(recipe);
